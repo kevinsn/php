@@ -7,6 +7,8 @@ Comenta + de 1 linha
 // Comenta apenas uma linha
 
 $nome = "Kevin";
+$sobrenome = "Silva";
+
 echo $nome;
 
 // Tipos de dados:
