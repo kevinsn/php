@@ -13,14 +13,10 @@
           Tarefa:
           <input type="text" name="nome" />
         </label>
-        <br>
-        <br>
         <label>
           Descrição (Opcional):
           <textarea name="descricao"></textarea>
         </label>
-        <br>
-        <br>
         <label>
           Prazo (Opcional):
           <input type="text" name="prazo" />
