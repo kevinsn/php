@@ -1,13 +1,14 @@
 <?php
 
+// Dados de acesso ao banco
+define("BD_SERVIDOR","127.0.0.1:3306");
+define("BD_USUARIO","root");
+define("BD_SENHA","");
+define("BD_BANCO","tarefas");
+
 function gravar_tarefa($tarefa)
 {
-  $bdServidor = '127.0.0.1:3306';
-  $bdUsuario = 'root';
-  $bdSenha = '';
-  $bdBanco = 'tarefas';
-
-  $conexao = new mysqli($bdServidor, $bdUsuario, $bdSenha, $bdBanco);
+  $conexao = new mysqli(BD_SERVIDOR, BD_USUARIO, BD_SENHA, BD_BANCO);
 
   if ($conexao->connect_error) {
     echo "Problema para conectar com o banco de dados. Verifique os dados!";
@@ -23,9 +24,27 @@ function gravar_tarefa($tarefa)
     $prazo = $tarefa['prazo'];
     $prioridade = $tarefa['prioridade'];
     $concluida = $tarefa['concluida'];
+
     $stmt->execute();
 
     $stmt->close();
     $conexao->close();
   }
+}
+
+function buscar_tarefas(){
+  $conexao = new mysqli(BD_SERVIDOR, BD_USUARIO, BD_SENHA, BD_BANCO);
+  $lista_tarefas = array();
+
+  if ($conexao->connect_error) {
+    echo "Problema para conectar com o banco de dados. Verifique os dados!";
+    $conexao->close();
+  } else {
+    $resultado = $conexao->query("SELECT * FROM tarefas");
+    while($tarefa = $resultado->fetch_array(MYSQLI_ASSOC)){
+        array_push($lista_tarefas, $tarefa);
+    }
+    $conexao->close();
+  }
+  return $lista_tarefas;
 }
