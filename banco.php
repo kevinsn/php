@@ -16,7 +16,7 @@ function gravar_tarefa($tarefa)
   } else {
     // echo "Conexão realizada com sucesso";
     // $conexao->close();
-    $stmt = $conexao->prepare("INSERT INTO tarefas(nome,descricao,prazo,concluida,prioridade) VALUES (?,?,?,?,?)");
+    $stmt = $conexao->prepare("INSERT INTO tarefas(nome,descricao,prazo,prioridade,concluida) VALUES (?,?,?,?,?)");
     $stmt->bind_param('sssii', $nome, $descricao, $prazo, $prioridade, $concluida);
 
     $nome = $tarefa['nome'];
